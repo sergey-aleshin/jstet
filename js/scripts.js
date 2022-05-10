@@ -13,6 +13,8 @@
 
     function initHandlers () {
         window.addEventListener("keyup", function (ev) {
+            if (ev.altKey || ev.ctrlKey || ev.shiftKey)
+                return;
             console.log(ev);
         });
     }
