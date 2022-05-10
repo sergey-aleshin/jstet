@@ -4,18 +4,21 @@
     window.addEventListener("load", init);
 
     function init () {
-        let options = getInitialOptions();
-
-        createCanvas(options);
+        createCanvas(getInitialOptions());
 
         initHandlers();
     }
 
     function initHandlers () {
+        console.log("setting up handlers...");
         window.addEventListener("keyup", function (ev) {
-            if (ev.altKey || ev.ctrlKey || ev.shiftKey)
+            if (ev.altKey || ev.ctrlKey || ev.shiftKey || ev.metaKey)
                 return;
-            console.log(ev);
+
+            if (ev.key == 'r') {
+                createCanvas(getInitialOptions());
+                return;
+            }
         });
     }
 
@@ -27,6 +30,7 @@
         var oldCanvas = getCanvas();
 
         if (oldCanvas) {
+            console.log("Removing old canvas...");
             oldCanvas.remove();
         }
 
